@@ -1,0 +1,23 @@
+{
+  "name": "proyecto-integrador-backend",
+  "version": "1.0.0",
+  "description": "Backend del proyecto integrador Grupo 4, 3 Matutino A, Lider Proyecto Santiago Venegas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santimarce/ProyectoIntegrador_Angular_G4_3VA_Backend.git"
+  },
+  "keywords": [
+    "backend",
+    "proyecto-integrador"
+  ],
+  "author": "Santiago Venegas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santimarce/ProyectoIntegrador_Angular_G4_3VA_Backend/issues"
+  },
+  "homepage": "https://github.com/santimarce/ProyectoIntegrador_Angular_G4_3VA_Backend#readme"
+}
