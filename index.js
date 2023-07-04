@@ -3,7 +3,11 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
 app.use(cors());
+// Configurar body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Cargar variables de entorno desde el archivo .env
 require('dotenv').config();
@@ -18,14 +22,17 @@ const pool = new Pool({
 });
 
 // Asignaciones e inicialización de los Catálogos
-const getCatag = require('./getCatag');
+const getCatag = require('./rutasCruds/GetCatalogs');
+// Asignación del CRUD Docente
+const CrudDocente = require('./rutasCruds/crudDocentes');
+
 
 // Ruta principal
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-//Rutas de los catálogos
+// ------------------------------- Rutas de los catálogos ------------------------------
 // -- Ruta para obtener los datos de la tabla "Carrera"
 app.get('/carrera', (req, res) => {
   getCatag.getCarrera(pool, req, res);
@@ -46,12 +53,49 @@ app.get('/nivel', (req, res) => {
 app.get('/paralelo', (req, res) => {
   getCatag.getParalelo(pool, req, res);
 });
-// Ruta para obtener los datos de la tabla "Carrera"
-app.get('/carrera', (req, res) => {
+// Ruta para obtener los datos de la tabla "Rol"
+app.get('/rol', (req, res) => {
+  getCatag.getRol(pool, req, res);
+});
+// Ruta para obtener los datos de la tabla "Estado"
+app.get('/estado', (req, res) => {
   getCatag.getEstado(pool, req, res);
 });
+// Ruta para obtener los datos de la tabla "Rama"
+app.get('/rama', (req, res) => {
+  getCatag.getRama(pool, req, res);
+});
+// Ruta para obtener los datos de la tabla "Facultad"
+app.get('/Facultad', (req, res) => {
+  getCatag.getFacultad(pool, req, res);
+});
 
-// Rutas del CRUD Docente
+// ------------------------ Rutas para el CRUD de docentes --------------------------
+// -- Get Todos los docentes
+app.get('/docentes', (req, res) => {
+  CrudDocente.getDocentes(pool, req, res);
+});
+// -- Get docente específico
+app.get('/docentes/:id', (req, res) => {
+  CrudDocente.getDocente(pool, req, res);
+});
+// -- Crear docente
+app.post('/docentes', (req, res) => {
+  CrudDocente.createDocente(pool, req, res);
+});
+// -- Update docente
+app.put('/docentes/:id', (req, res) => {
+  CrudDocente.updateDocente(pool, req, res);
+});
+// -- Delete docente
+app.delete('/docentes/:id', (req, res) => {
+  CrudDocente.deleteDocente(pool, req, res);
+});
+
+// ------------------------ Rutas para el CRUD de docentes --------------------------
+
+
+
 
 
 app.use(express.json());

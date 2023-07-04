@@ -49,11 +49,56 @@ function getParalelo(pool, req, res) {
         }
     });
 }
+function getRol(pool, req, res) {
+    pool.query('SELECT * FROM rol', (error, result) => {
+        if (error) {
+            console.error('Error al obtener los datos de la tabla "Rol"', error);
+            res.status(500).send('Error al obtener los datos de la tabla "Rol"');
+        } else {
+            res.status(200).json(result.rows);
+        }
+    });
+}
+function getEstado(pool, req, res) {
+    pool.query('SELECT * FROM estado', (error, result) => {
+        if (error) {
+            console.error('Error al obtener los datos de la tabla "Estado"', error);
+            res.status(500).send('Error al obtener los datos de la tabla "Estado"');
+        } else {
+            res.status(200).json(result.rows);
+        }
+    });
+}
+
+function getRama(pool, req, res) {
+    pool.query('SELECT * FROM rama', (error, result) => {
+        if (error) {
+            console.error('Error al obtener los datos de la tabla "Rama"', error);
+            res.status(500).send('Error al obtener los datos de la tabla "Rama"');
+        } else {
+            res.status(200).json(result.rows);
+        }
+    });
+}
+function getFacultad(pool, req, res) {
+    pool.query('SELECT * FROM facultad', (error, result) => {
+        if (error) {
+            console.error('Error al obtener los datos de la tabla "Facultad"', error);
+            res.status(500).send('Error al obtener los datos de la tabla "Facultad"');
+        } else {
+            res.status(200).json(result.rows);
+        }
+    });
+}
 
 module.exports = {
     getCarrera,
     getDias,
     getJornada,
     getNivel,
-    getParalelo
+    getParalelo,
+    getRol,
+    getEstado,
+    getFacultad,
+    getRama
 };
