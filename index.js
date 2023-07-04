@@ -25,6 +25,8 @@ const pool = new Pool({
 const getCatag = require('./rutasCruds/GetCatalogs');
 // Asignación del CRUD Docente
 const CrudDocente = require('./rutasCruds/crudDocentes');
+// Asignación del CRUD Alumno
+const CrudAlumno = require('./rutasCruds/crudAlumno');
 
 
 // Ruta principal
@@ -92,10 +94,19 @@ app.delete('/docentes/:id', (req, res) => {
   CrudDocente.deleteDocente(pool, req, res);
 });
 
-// ------------------------ Rutas para el CRUD de docentes --------------------------
-
-
-
+// ------------------------ Rutas para el CRUD de alumnos --------------------------
+// -- Get Todos los alumnos
+app.get('/alumnos', (req, res) => {
+  CrudAlumno.getAlumnos(pool, req, res);
+});
+// -- Get alumno específico
+app.get('/alumnos/:id', (req, res) => {
+  CrudAlumno.getAlumno(pool, req, res);
+});
+// -- Crear alumno
+app.post('/alumnos', (req, res) => {
+  CrudAlumno.createAlumno(pool, req, res);
+});
 
 
 app.use(express.json());
